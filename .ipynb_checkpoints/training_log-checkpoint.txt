@@ -1,0 +1,7 @@
+epoch    0  -CVaR   -77.4040  lr 3.0e-03
+epoch   10  -CVaR    -2.5275  lr 3.0e-03
+epoch   20  -CVaR    -0.1242  lr 3.0e-03
+epoch   30  -CVaR    -0.1135  lr 3.0e-03
+epoch   40  -CVaR    -0.1080  lr 3.0e-03
+epoch   50  -CVaR    -0.1047  lr 3.0e-03
+epoch   60  -CVaR    -0.1022  lr 3.0e-03
