@@ -10,3 +10,4 @@ scipy
 joblib
 notebook
 streamlit
+tensorflow
