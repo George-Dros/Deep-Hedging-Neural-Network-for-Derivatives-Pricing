@@ -127,7 +127,7 @@ pip install -r requirements.txt
 
 ---
 
-## References (for readers)
+## References
 
 - Deep Hedging (Buehler et al., 2019), and the **OCE** formulation used for CVaR-style objectives.  
 - JPM/industry decks that showcase **ES curves**, **tail QQ**, and **VaR/CVaR overlays** as the right diagnostics for tail-risk control.
