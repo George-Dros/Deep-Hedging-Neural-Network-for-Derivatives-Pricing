@@ -18,10 +18,10 @@
 
 Numbers latest run with $α=0.90$ (CVaR$_{90}$), proportional costs, and early stopping:
 
-- **CVaR$_{90}$**: **−11.52** (hedged) vs **−32.16** (zero-hedge)  
-- **VaR$_{90}$**: **−10.30** (hedged) vs **−23.92** (zero-hedge)  
-- **Variance reduction** of $X$: **≈ 96%**  
-- **MAE reduction** of $X$: **≈ 1–2%** (small by design: we optimize tails, not MAE)  
+- **CVaR$_{90}$**: **−23.97** (hedged) vs **−79.89** (zero-hedge)  
+- **VaR$_{90}$**: **−20.04** (hedged) vs **−49.77** (zero-hedge)  
+- **Variance reduction** of $X$: **≈ 97.46%**  
+- **MAE reduction** of $X$: **≈ 0–1%** (small by design: we optimize tails, not MAE)  
 - **Mean trading cost** per path: **≈ 0.15**  
 - **Average turnover** (sum over time, per path): **≈ 3.0**
 
@@ -138,3 +138,6 @@ pip install -r requirements.txt
 
 MIT
 
+## Created by
+Georgios Drosogiannis
+MSc Applied Math
