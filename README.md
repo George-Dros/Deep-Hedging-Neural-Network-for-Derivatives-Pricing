@@ -8,7 +8,7 @@
 ## Repo tour
 
 - **1_Theory_and_Background** — problem setup, notation, CVaR/OCE risk, objective.
-- **2_Data_Simulation** — Monte Carlo paths under **GBM or Heston** (toggle), plus feature engineering used by the policy.
+- **2_Data_Simulation** — Monte Carlo paths under **GBM or Bates (Heston & Merton Diffusion)** (toggle), plus feature engineering used by the policy.
 - **3_Deep_Hedging_Model-Keras** — policy network, RU/OCE head for CVaR, training loop with callbacks, metrics & logging.
 - **4_Backtesting_and_Validation** — out-of-sample evaluation and plots: tail histograms with VaR/CVaR markers, ES curves across $α$, left-tail QQ, ECDF, and effectiveness metrics.
 
@@ -16,12 +16,12 @@
 
 ## Headline results (test set)
 
-Numbers latest run with $α=0.90$ (CVaR$_{90}$), proportional costs, and early stopping:
+Numbers latest run with $α=0.90$ (CVaR@90), proportional costs, and early stopping:
 
-- **CVaR$_{90}$**: **−23.97** (hedged) vs **−79.89** (zero-hedge)  
-- **VaR$_{90}$**: **−20.04** (hedged) vs **−49.77** (zero-hedge)  
-- **Variance reduction** of $X$: **≈ 97.46%**  
-- **MAE reduction** of $X$: **≈ 0–1%** (small by design: we optimize tails, not MAE)  
+- **CVaR@90**: **−31.18** (hedged) vs **−68.06** (zero-hedge)  
+- **VaR@90**: **−26.80** (hedged) vs **−45.87** (zero-hedge)  
+- **Variance reduction** of $X$: **≈ 85.5%**  
+- **MAE reduction** of $X$: **- 3.0%** (we optimize tails, not MAE so MAE suffers)  
 - **Mean trading cost** per path: **≈ 0.15**  
 - **Average turnover** (sum over time, per path): **≈ 3.0**
 
@@ -59,7 +59,7 @@ Overlay $V_T^{true} := P_0 + V_T$ against $Z_T$. This reframes wealth with a pre
 ## Method in one diagram
 
 1. **Simulate market** under GBM or **Heston** (stochastic vol).  
-2. **Features**: price/scaled returns, realized vol proxy, moneyness, time-to-maturity (example set of four).  
+2. **Features**: price/scaled returns, moneyness, realized vol proxy, moneyness, time-to-maturity, call/put (example set of six).  
 3. **Policy network** outputs trades over time; **proportional costs** apply.  
 4. Compute terminal **hedging error** $X=V_T-Z_T$.  
 5. **RU/OCE head** with parameter $τ$ implements CVaR utility:  
@@ -89,8 +89,8 @@ pip install -r requirements.txt
 ```
 
 **Artifacts**  
-- Trained weights: `results/best_tail_by_cvar.weights.h5`  
-- Test evaluation arrays: `results/hedging_eval_test_keras_4.npz` with `V_T, Z_T`  
+- Trained weights: `results/best_tail_by_cvar.weights_x.h5`  
+- Test evaluation arrays: `results/hedging_eval_test_keras_x.npz` with `V_T, Z_T`  
 
 ---
 
