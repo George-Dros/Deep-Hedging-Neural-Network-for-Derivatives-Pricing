@@ -18,14 +18,14 @@
 
 Numbers latest run with $α=0.90$ (CVaR@90), proportional costs, and early stopping:
 
-- **CVaR@90**: **−31.18** (hedged) vs **−68.06** (zero-hedge)  
-- **VaR@90**: **−26.80** (hedged) vs **−45.87** (zero-hedge)  
-- **Variance reduction** of $X$: **≈ 85.5%**  
-- **MAE reduction** of $X$: **- 3.0%** (we optimize tails, not MAE so MAE suffers)  
-- **Mean trading cost** per path: **≈ 0.15**  
-- **Average turnover** (sum over time, per path): **≈ 3.0**
+- **CVaR@90**: **-59.40** (hedged) vs **-131.09** (zero-hedge)  
+- **VaR@90**: **-42.26** (hedged) vs **-84.54** (zero-hedge)  
+- **Variance reduction** of $X$: **≈ 82.6%**  
+- **MAE reduction** of $X$: **- 8.5%** (we optimize tails, not MAE, consequently MAE suffers)  
+- **Mean trading cost** per path: **≈ 0.2**  
+- **Average turnover** (sum over time, per path): **≈ 4.02**
 
-> Interpretation: the network **dominates the left tail** (much less negative losses), which is the stated objective. MAE barely changes—this is expected when optimizing CVaR rather than $L^1$.
+> Interpretation: the network **dominates the left tail** (much less negative losses), which is the stated objective. MAE is being reduced—this is expected when optimizing CVaR rather than $L^1$. In this run, Monte Carlo simulations were generated intentionally with relatively high volatility through Bates (Merton diffuse & Heston) to assimilate worse tail conditions.
 
 ---
 
@@ -83,7 +83,7 @@ pip install -r requirements.txt
 
 # 3) Execute notebooks in order
 # 1_Theory_and_Background.ipynb (read-only)
-# 2_Data_Simulation.ipynb       (choose GBM/Heston, path counts, seeds)
+# 2_Data_Simulation.ipynb       (choose GBM/Batses, path counts, seeds)
 # 3_Deep_Hedging_Model-Keras.ipynb (train; saves weights + npz eval)
 # 4_Backtesting_and_Validation.ipynb (plots + metrics)
 ```
@@ -104,7 +104,7 @@ pip install -r requirements.txt
 - **Costs**: proportional; **turnover** tracked as a metric  
 - **Baseline**: zero-hedge $X_0=-Z_T$
 
-> Note on MAE: pushing MAE down meaningfully conflicts with tail optimization. Experimented with large $β$ and saw CVaR get worse. For a CVaR-first portfolio, keeping $β$ tiny is the right call.
+> Note on MAE: pushing MAE down meaningfully conflicts with tail optimization. Experimented with large $β$ and saw CVaR get worse. For a CVaR-first portfolio, keeping $β$ tiny (or even  $β = 0 $) is the right call.
 
 ---
 
@@ -117,13 +117,14 @@ pip install -r requirements.txt
 
 ---
 
-## Extending this project
+## Possible extensions to this project
 
-- **Multiple payoffs**: calls + puts, and **strike conditioning** (one-hot or numeric $K$ as an input).  
+ 
 - **Portfolio of options**: vectorized $Z_T$ and multi-asset underlying.  
 - **Richer features**: implied/realized vol, term-structure snippets, skew.  
 - **Risk target sweeps**: train separate policies for $α∈\{0.85,0.90,0.95\}$ and plot the Pareto frontier between CVaR and MAE/variance.  
 - **Alternate markets**: rough volatility, jumps, or historical resampling.
+- **Real Market data**: Use the trained model to assess hedging real options data.
 
 ---
 
