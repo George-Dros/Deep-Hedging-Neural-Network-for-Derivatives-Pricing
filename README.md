@@ -18,8 +18,8 @@
 
 Numbers latest run with $α=0.90$ (CVaR@90), proportional costs, and early stopping:
 
-- **CVaR@90**: **-59.40** (hedged) vs **-131.09** (zero-hedge)  
-- **VaR@90**: **-42.26** (hedged) vs **-84.54** (zero-hedge)  
+- **CVaR@90**: **-49.31** (hedged) vs **-102.53** (zero-hedge)  
+- **VaR@90**: **-36.57** (hedged) vs **-65.79** (zero-hedge)  
 - **Variance reduction** of $X$: **≈ 82.6%**  
 - **MAE reduction** of $X$: **- 8.5%** (we optimize tails, not MAE, consequently MAE suffers)  
 - **Mean trading cost** per path: **≈ 0.2**  
